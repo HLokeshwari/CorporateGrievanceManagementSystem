@@ -1,0 +1,187 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+<h:head>
+    <title>Admin Login</title>
+    <style>
+        /* General body styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(120deg, #e3f2fd 0%, #bbdefb 100%);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100vh;
+        }
+
+        /* Navbar styles */
+        .navbar {
+            overflow: hidden;
+            background-color: #2196F3;
+            font-family: 'Roboto', sans-serif;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            padding: 14px 0;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar a {
+            color: white;
+            text-align: center;
+            padding: 14px 20px;
+            text-decoration: none;
+            font-size: 17px;
+            transition: background-color 0.3s ease, border-radius 0.3s ease;
+        }
+
+        .navbar a:hover {
+            background-color: #0b79d0;
+            border-radius: 8px;
+        }
+
+        /* Adjust the content container to account for the fixed navbar */
+        .content {
+            margin-top: 70px; /* Adjust this based on the navbar height */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+        }
+
+        /* Form container styles */
+        .form-container {
+            background: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            padding: 30px; /* Reduced padding for a more compact look */
+            width: 100%;
+            max-width: 400px; /* Max width for responsive design */
+            box-sizing: border-box;
+        }
+
+        /* Form header styles */
+        .form-header {
+            text-align: center;
+            margin-bottom: 20px; /* Reduced margin */
+        }
+
+        .form-header h3 {
+            margin: 0;
+            color: #333;
+            font-size: 24px; /* Adjusted font size */
+        }
+
+        /* Form field styles */
+        .form-field {
+            margin-bottom: 20px; /* Reduced margin */
+        }
+
+        .form-field label {
+            display: block;
+            margin-bottom: 8px; /* Margin between label and input */
+            color: #444;
+            font-weight: bold;
+        }
+
+        .form-field input[type="text"],
+        .form-field input[type="password"] {
+            width: 100%;
+            padding: 12px; /* Adjusted padding */
+            box-sizing: border-box;
+            border: 1px solid #ddd; /* Lighter border */
+            border-radius: 4px;
+            background: #fafafa;
+            font-size: 16px; /* Adjusted font size */
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .form-field input[type="text"]:focus,
+        .form-field input[type="password"]:focus {
+            border-color: #2196F3;
+            box-shadow: 0 0 8px rgba(33, 150, 243, 0.3);
+            outline: none; /* Remove default outline */
+        }
+
+        /* Button styles */
+        .button {
+            background-color: #2196F3;
+            color: #ffffff;
+            border: none;
+            padding: 12px 24px;
+            text-align: center;
+            text-decoration: none;
+            display: block;
+            font-size: 16px; /* Adjusted font size */
+            cursor: pointer;
+            border-radius: 4px;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            width: 100%;
+        }
+
+        .button:hover {
+            background-color: #0b79d0;
+            transform: scale(1.05);
+        }
+
+        /* Error message styles */
+        .error-message {
+            color: #e53935;
+            font-size: 0.9em;
+            margin-top: 5px;
+        }
+    </style>
+</h:head>
+<body>
+
+<!-- Navbar -->
+<div class="navbar">
+    <a href="index.jsf">Home</a>
+    <a href="adminlogin.jsf">Admin Login</a>
+</div>
+
+<!-- Page content -->
+<div class="content">
+    <div class="form-container">
+        <div class="form-header">
+            <h3>Admin Login</h3>
+        </div>
+
+        <h:form>
+            <h:panelGrid columns="1" cellpadding="5" styleClass="panelGrid">
+                <div class="form-field">
+                    <h:outputLabel for="username" value="Enter Username"/>
+                    <h:inputText id="username" validatorMessage="Username length must be between 5 and 30" value="#{adminbean.username}">
+                        <f:validateLength minimum="5" maximum="30"/>
+                    </h:inputText>
+                    <h:message for="username" styleClass="error-message"/>
+                </div>
+
+                <div class="form-field">
+                    <h:outputLabel for="password" value="Enter Password"/>
+                    <h:inputSecret id="password" validatorMessage="Password length must be between 5 and 30" value="#{adminbean.password}">
+                        <f:validateLength minimum="5" maximum="30"/>
+                    </h:inputSecret>
+                    <h:message for="password" styleClass="error-message"/>
+                </div>
+
+                <div class="form-field">
+                    <h:commandButton id="login" styleClass="button" value="Login" action="#{adminbean.validateadminlogin()}"/>
+                    <h:message for="login"/>
+                </div>
+            </h:panelGrid>
+        </h:form>
+    </div>
+</div>
+
+</body>
+</html>

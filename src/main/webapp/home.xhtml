@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+<h:head>
+    <title>Corporate Grievance Management System - Home</title>
+    <h:outputStylesheet library="css" name="styles.css" />
+</h:head>
+
+<h:body>
+    <h:form>
+        <ui:include src="/nav.xhtml" />
+
+        <h1 class="welcomeMessage">#{homePageBean.welcomeMessage}</h1>
+        <h:outputText value="#{homePageBean.intro}" styleClass="introText" />
+
+        <div class="cardContainer">
+            <div class="card">
+                <h2>Features</h2>
+                <ul>
+                    <ui:repeat value="#{homePageBean.features}" var="feature">
+                        <li>#{feature}</li>
+                    </ui:repeat>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h2>Benefits</h2>
+                <ul>
+                    <ui:repeat value="#{homePageBean.benefits}" var="benefit">
+                        <li>#{benefit}</li>
+                    </ui:repeat>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h2>Navigation</h2>
+                <h:panelGrid columns="1">
+                    <h:commandLink value="Submit Grievance" action="raisegrie.xhtml" />
+                    
+             
+                </h:panelGrid>
+            </div>
+
+            <div class="card">
+                <h2>Contact Information</h2>
+                <h:outputText value="#{homePageBean.contactInfo}" escape="false" styleClass="contactInfo" />
+            </div>
+        </div>
+    </h:form>
+</h:body>
+</html>
